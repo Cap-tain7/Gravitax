@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gravitas</title>
+  <link rel="icon" href="https://gravitas-new.glitch.me/uploads/1746366294862-469061126.png" type="image/png" sizes="64x64" />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+  font-family: 'Patrick Hand', cursive;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background-color: #ffff;
+}
+
+.left-side {
+  width: 50%;
+  background-color: rgba(29, 161, 242, 0.8);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.left-side .content {
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.left-side h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.left-side p {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  margin-bottom: 2rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.left-side img {
+  max-width: 130%; /* Increased to make the image much larger */
+  width: 130%; /* Forces the image to scale up significantly */
+  height: auto;
+  border-radius: 1rem;
+  loading: lazy;
+}
+
+    .right-side {
+      width: 50%;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #ffffff;
+      position: relative;
+    }
+
+    .right-side .top-left-img {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      width: clamp(100px, 20vw, 120px);
+      height: auto;
+      loading: lazy;
+    }
+
+    .logo-img {
+      width: clamp(120px, 25vw, 150px);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 1.5rem;
+    }
+
+    .form-container h2 {
+      font-size: clamp(1.8rem, 6vw, 2.5rem);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #333;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-container input:focus {
+      outline: none;
+      border-color: #1DA1F2;
+    }
+
+    .login-btn {
+      width: 100%;
+      background-color: #1DA1F2;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      touch-action: manipulation;
+    }
+
+    .login-btn:hover {
+      background-color: #0c85d0;
+    }
+
+    .login-btn:focus {
+      outline: 2px solid #0c85d0;
+      outline-offset: 2px;
+    }
+
+    .divider {
+      margin: 1.5rem 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background-color: #ccc;
+    }
+
+    .divider::before {
+      left: 0;
+    }
+
+    .divider::after {
+      right: 0;
+    }
+
+    .divider span {
+      background-color: white;
+      padding: 0 0.5rem;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .google-btn, .gravitas-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: white;
+      color: #333;
+      border: 1px solid #ccc;
+      padding: 0.75rem;
+      border-radius: 2rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      justify-content: center;
+      width: 100%;
+      max-width: 300px;
+      margin: 0.5rem auto;
+      touch-action: manipulation;
+    }
+
+    .google-btn:hover, .gravitas-btn:hover {
+      background-color: #f0f0f0;
+    }
+
+    .google-btn:focus, .gravitas-btn:focus {
+      outline: 2px solid #1DA1F2;
+      outline-offset: 2px;
+    }
+
+    .google-btn img {
+      width: 1.25rem;
+      height: 1.25rem;
+      object-fit: contain;
+    }
+
+    .gravitas-btn img {
+      width: 1.5rem;
+      height: 1.5rem;
+      object-fit: contain;
+    }
+
+    .copyright {
+      font-size: clamp(0.7rem, 2.5vw, 0.8rem);
+      color: rgba(255, 255, 255, 0.9);
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    /* Media Queries for Responsive Design */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .left-side, .right-side {
+        width: 100%;
+        min-height: 50vh;
+        padding: 1.5rem;
+      }
+
+      .left-side {
+        order: 2;
+      }
+
+      .right-side {
+        order: 1;
+      }
+
+      .right-side .top-left-img {
+        top: 1rem;
+        left: 1rem;
+        width: clamp(80px, 15vw, 100px);
+      }
+
+      .form-container {
+        max-width: 90%;
+      }
+
+      .form-container h2 {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+      }
+
+      .google-btn, .gravitas-btn {
+        max-width: 100%;
+        padding: 0.75rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .left-side h1 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+      }
+
+      .left-side p {
+        font-size: clamp(0.9rem, 4vw, 1rem);
+      }
+
+      .form-container input {
+        padding: 0.65rem;
+        font-size: 0.9rem;
+      }
+
+      .login-btn {
+        padding: 0.65rem;
+        font-size: 0.9rem;
+      }
+
+      .google-btn, .gravitas-btn {
+        padding: 0.65rem;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="left-side">
+    <div class="content">
+      <h1>Learn and Share</h1>
+      <p>Connect yourself</p>
+      <img src="https://cdn.glitch.global/64ed69b7-ed08-43ba-8cbe-8fe8061b9ff8/Bggra.png?v=1746773205866"
+           srcset="https://cdn.glitch.global/64ed69b7-ed08-43ba-8cbe-8fe8061b9ff8/Bggra.png?v=1746773205866 1x,
+                   https://cdn.glitch.global/64ed69b7-ed08-43ba-8cbe-8fe8061b9ff8/Bggra.png?v=1746773205866 2x"
+           alt=""
+           loading="lazy" />
+      <div class="copyright">A site by Ngawang Tshogyal Phuentshok and Sonam Rigsel</div>
+    </div>
+  </div>
+
+  <div class="right-side">
+    <img src="https://gravitas-new.glitch.me/uploads/1746366561690-941114026.png"
+         alt=""
+         class="top-left-img"
+         loading="lazy" />
+    <div class="form-container">
+      <h2>See what's new</h2>
+      <input id="gravitas-id" type="text" placeholder="Username" aria-label="Gravitas ID" />
+      <input id="password" type="password" placeholder="Password" aria-label="Password" />
+      <button class="login-btn" id="login-btn">Log In</button>
+      <div class="divider"><span>or</span></div>
+      <button id="google-login-btn" class="google-btn" aria-label="Continue with Google">
+        <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google logo" loading="lazy" />
+        Continue with Google
+      </button>
+      <button id="gravitas-login-btn" class="gravitas-btn" onclick="window.location.href='hi.html'" aria-label="Continue with Gravitas">
+        <img src="https://gravitas-new.glitch.me/uploads/1746366294862-469061126.png" alt="" loading="lazy" />
+        Continue with Gravitas
+      </button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAH-MjcVOSLl5G6zEl6C7xfOcJs_XFqAqc",
+      authDomain: "gavitas-31924.firebaseapp.com",
+      projectId: "gavitas-31924",
+      storageBucket: "gavitas-31924.firebasestorage.app",
+      messagingSenderId: "447626644705",
+      appId: "1:447626644705:web:d1e80b1ba4693371d4fba0",
+      measurementId: "G-TK1L8DKHEY"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+
+    async function saveUserProfile(userData) {
+      try {
+        const response = await fetch('/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(userData)
+        });
+        if (!response.ok) throw new Error('Failed to save user profile');
+      } catch (error) {
+        console.error('Error saving user profile:', error);
+      }
+    }
+
+    const googleLogin = document.getElementById("google-login-btn");
+    googleLogin.addEventListener("click", function () {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          const userData = {
+            username: user.displayName || user.email.split('@')[0],
+            userEmail: user.email,
+            photoURL: user.photoURL || 'https://cdn.glitch.global/4ffdef98-b47b-4a2b-8702-0766bcf80c7f/logo%20fav.png?v=1744003628958'
+          };
+
+          localStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem("username", userData.username);
+          localStorage.setItem("userEmail", userData.userEmail);
+          localStorage.setItem("userPhoto", userData.photoURL);
+
+          saveUserProfile(userData).then(() => {
+            window.location.href = "home.html";
+          });
+        })
+        .catch((error) => {
+          console.error("Error signing in:", error.message);
+          alert("Error signing in with Google.");
+        });
+    });
+
+    document.getElementById('login-btn').addEventListener('click', function() {
+      const gravitasId = document.getElementById('gravitas-id').value;
+      const password = document.getElementById('password').value;
+
+      let userData;
+      if (gravitasId === 'Gravitas' && password === 'GD') {
+        userData = {
+          username: 'Gravitas',
+          userEmail: 'Gravitas',
+          photoURL: 'https://cdn.glitch.global/64ed69b7-ed08-43ba-8cbe-8fe8061b9ff8/gravitas-logo.png?v=1745752055212'
+        };
+      } else if (gravitasId === 'Carl' && password === 'CD') {
+        userData = {
+          username: 'Carl',
+          userEmail: 'Carl',
+          photoURL: 'https://cdn.glitch.global/64ed69b7-ed08-43ba-8cbe-8fe8061b9ff8/_.jpeg?v=1745752289462'
+        };
+      } else if (gravitasId === 'Phuentshok' && password === 'Ilovesss') {
+        userData = {
+          username: 'Phuentshok',
+          userEmail: 'Phuentshok',
+          photoURL: 'https://cdn.glitch.global/46d21e93-6494-4e68-8860-ab30cc213890/nh.jpeg?v=1729918855839'
+        }; 
+      } else if (gravitasId === 'Newton' && password === 'MT') {
+        userData = {
+          username: 'Newton',
+          userEmail: 'mtg@gmail.com',
+          photoURL: 'https://cdn.glitch.global/64ed69b7-ed08-43ba-8cbe-8fe8061b9ff8/newtnail.png?v=1745750935919'
+        };
+      } else {
+        alert('Invalid Gravitas ID or Password');
+        return;
+      }
+
+      localStorage.setItem("user", JSON.stringify({ displayName: userData.username, email: userData.userEmail, photoURL: userData.photoURL }));
+      localStorage.setItem("username", userData.username);
+      localStorage.setItem("userEmail", userData.userEmail);
+      localStorage.setItem("userPhoto", userData.photoURL);
+
+      saveUserProfile(userData).then(() => {
+        window.location.href = 'home.html';
+      });
+    });
+  </script>
+</body>
+</html>
